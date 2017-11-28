@@ -1,5 +1,20 @@
-console.log("app.js is running")
+"use strict";
 
-var template = <p>This is JSX rendered by app.js</p>
-var appRoot = document.getElementById('app')
-REACTDOM.render(template, appRoot)
+console.log("app.js is running");
+
+var template = React.createElement(
+  "div",
+  null,
+  React.createElement(
+    "h1",
+    null,
+    "This is JSX rendered by app.js"
+  ),
+  React.createElement(
+    "p",
+    null,
+    "sup"
+  )
+);
+var appRoot = document.getElementById('app');
+ReactDOM.render(template, appRoot);
