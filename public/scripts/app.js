@@ -16,5 +16,30 @@ var template = React.createElement(
     "sup"
   )
 );
+
+var userName = "John Nenniger";
+var userAge = 25;
+var userLocation = "Vancouver, Canada";
+var templateTwo = React.createElement(
+  "div",
+  null,
+  React.createElement(
+    "h1",
+    null,
+    userName
+  ),
+  React.createElement(
+    "p",
+    null,
+    "Age: ",
+    userAge
+  ),
+  React.createElement(
+    "p",
+    null,
+    "Location: ",
+    userLocation
+  )
+);
 var appRoot = document.getElementById('app');
-ReactDOM.render(template, appRoot);
+ReactDOM.render(templateTwo, appRoot);
