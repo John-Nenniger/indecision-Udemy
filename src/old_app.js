@@ -9,6 +9,29 @@ function getLocation(location){
   }
 }
 
+function createOptions(options){
+  if (options.length>0){
+    return `Here are your options: ${options}`
+  } else {
+    return "No options"
+  }
+}
+
+const app = {
+  title: "Spork",
+  subtitle: "cutlery?",
+  options: ['One', 'Two', 'Three', 'fer']
+}
+
+console.log(app.subtitle)
+const template = (
+<div>
+  <h1>{app.title}</h1>
+  {true && <p>{app.subtitle}</p>}
+  <p>{app.options.length>0 ? `Here are your options : ${app.options}` : "No options"}</p>
+</div>
+);
+
 const user = {
   name: "John",
   age: 25,
@@ -30,4 +53,4 @@ const templateTwo = (
 
 
 const appRoot = document.getElementById('app')
-ReactDOM.render(templateTwo, appRoot)
+ReactDOM.render(template, appRoot)
