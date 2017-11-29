@@ -27,7 +27,7 @@ function createOptions(options) {
 var app = {
   title: "Spork",
   subtitle: "cutlery?",
-  options: ['One', 'Two']
+  options: ['One', 'Two', 'Three', 'fer']
 };
 
 console.log(app.subtitle);
@@ -47,7 +47,7 @@ var template = React.createElement(
   React.createElement(
     "p",
     null,
-    createOptions(app.options)
+    app.options.length > 0 ? "Here are your options : " + app.options : "No options"
   )
 );
 

@@ -20,7 +20,7 @@ function createOptions(options){
 let app = {
   title: "Spork",
   subtitle: "cutlery?",
-  options: ['One', 'Two']
+  options: ['One', 'Two', 'Three', 'fer']
 }
 
 console.log(app.subtitle)
@@ -28,7 +28,7 @@ var template = (
 <div>
   <h1>{app.title}</h1>
   {true && <p>{app.subtitle}</p>}
-  <p>{createOptions(app.options)}</p>
+  <p>{app.options.length>0 ? `Here are your options : ${app.options}` : "No options"}</p>
 </div>
 );
 
