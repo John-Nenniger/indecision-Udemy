@@ -8,14 +8,20 @@ var template = (
 </div>
 );
 
+let user = {
+  name: "John Nenniger",
+  age: 25,
+  location: "Vancouver"
+}
+
 let userName = "John Nenniger";
 let userAge = 25;
 let userLocation = "Vancouver, Canada"
 var templateTwo = (
   <div>
-    <h1>{userName}</h1>
-    <p>Age: {userAge}</p>
-    <p>Location: {userLocation}</p>
+    <h1>{user.name}</h1>
+    <p>Age: {user.age}</p>
+    <p>Location: {user.location}</p>
   </div>
 )
 var appRoot = document.getElementById('app')
