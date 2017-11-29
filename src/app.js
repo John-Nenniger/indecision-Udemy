@@ -17,14 +17,14 @@ function createOptions(options){
   }
 }
 
-let app = {
+const app = {
   title: "Spork",
   subtitle: "cutlery?",
   options: ['One', 'Two', 'Three', 'fer']
 }
 
 console.log(app.subtitle)
-var template = (
+const template = (
 <div>
   <h1>{app.title}</h1>
   {true && <p>{app.subtitle}</p>}
@@ -32,13 +32,14 @@ var template = (
 </div>
 );
 
-let user = {
+const user = {
   name: "John",
   age: 25,
   location: "Vancouver"
 }
-
-var templateTwo = (
+// let and const are block scoped, var is functionally scoped
+// (it gets hoisted into the surrounding function)
+const templateTwo = (
   <div>
     <h1>{user.name ?  user.name : "Anonymous"}</h1>
     {/* booleans, Null, and undefined are all ignored by JSX */}
@@ -51,5 +52,5 @@ var templateTwo = (
 // ternary operator condition ? "what happens if true" : "what happens if false"
 
 
-var appRoot = document.getElementById('app')
+const appRoot = document.getElementById('app')
 ReactDOM.render(template, appRoot)
