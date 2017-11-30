@@ -16,18 +16,35 @@ const user = {
 }
 // let and const are block scoped, var is functionally scoped
 // (it gets hoisted into the surrounding function)
-const templateTwo = (
-  <div>
-    <h1>{user.name ?  user.name : "Anonymous"}</h1>
-    {/* booleans, Null, and undefined are all ignored by JSX */}
-    {false}
-    {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
-    {getLocation(user.location)}
-  </div>
-)
+let count = 0;
+const addOne = () => {
+  count++;
+  renderCounterApp();
+}
+const minusOne = () => {
+  count--;
+  renderCounterApp();
+}
+const reset = () => {
+  count = 0;
+  renderCounterApp();
+}
 
 // ternary operator condition ? "what happens if true" : "what happens if false"
 
-
 const appRoot = document.getElementById('app')
+
+const renderCounterApp = () => {
+  const templateTwo = (
+    <div>
+      <h1>Count: {count}</h1>
+      <button onClick={addOne}>+1</button>
+      <button onClick={minusOne}>-1</button>
+      <button onClick={reset}>reset</button>
+    </div>
+  );
+
 ReactDOM.render(templateTwo, appRoot)
+}
+
+renderCounterApp();
