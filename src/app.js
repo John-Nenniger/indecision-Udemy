@@ -1,50 +1,45 @@
 
 console.log("app.js is running")
 
-function getLocation(location){
-  if(location){
-    return <p> Location: {location} </p>
-  } else {
-    return undefined
+const app = {
+  title: 'Indecision App',
+  subtitle: 'Let me, a robot decide for you.',
+  options: [' One', ' Two', ' Three', ' fer']
+}
+
+const onFormSubmit = (e) => {
+  e.preventDefault();
+  const option = e.target.elements.option.value
+
+  if (option){
+    app.options.push(` ${option}`);
+    e.target.elements.option.value = '';
+    renderIndecision()
   }
 }
 
-const user = {
-  name: "John",
-  age: 25,
-  location: "Vancouver"
+const removeAll = () => {
+  app.options = [];
+  renderIndecision()
 }
-// let and const are block scoped, var is functionally scoped
-// (it gets hoisted into the surrounding function)
-let count = 0;
-const addOne = () => {
-  count++;
-  renderCounterApp();
-}
-const minusOne = () => {
-  count--;
-  renderCounterApp();
-}
-const reset = () => {
-  count = 0;
-  renderCounterApp();
-}
-
 // ternary operator condition ? "what happens if true" : "what happens if false"
 
 const appRoot = document.getElementById('app')
 
-const renderCounterApp = () => {
-  const templateTwo = (
-    <div>
-      <h1>Count: {count}</h1>
-      <button onClick={addOne}>+1</button>
-      <button onClick={minusOne}>-1</button>
-      <button onClick={reset}>reset</button>
-    </div>
+const renderIndecision = () => {
+  const template = (
+  <div>
+    <h1>{app.title}</h1>
+    {true && <p>{app.subtitle}</p>}
+    <p>{app.options.length>0 ? `Here are your options : ${app.options}` : "No options"}</p>
+    <form onSubmit={onFormSubmit}>
+      <input type="text" name="option" />
+      <button>Add Option</button>
+    </form>
+    <button onClick={removeAll}>Remove All</button>
+  </div>
   );
 
-ReactDOM.render(templateTwo, appRoot)
+  ReactDOM.render(template, appRoot);
 }
-
-renderCounterApp();
+renderIndecision()

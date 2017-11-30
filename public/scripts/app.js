@@ -1,73 +1,68 @@
-"use strict";
+'use strict';
 
 console.log("app.js is running");
 
-function getLocation(location) {
-  if (location) {
-    return React.createElement(
-      "p",
-      null,
-      " Location: ",
-      location,
-      " "
-    );
-  } else {
-    return undefined;
+var app = {
+  title: 'Indecision App',
+  subtitle: 'Let me, a robot decide for you.',
+  options: [' One', ' Two', ' Three', ' fer']
+};
+
+var onFormSubmit = function onFormSubmit(e) {
+  e.preventDefault();
+  var option = e.target.elements.option.value;
+
+  if (option) {
+    app.options.push(' ' + option);
+    e.target.elements.option.value = '';
+    renderIndecision();
   }
-}
-
-var user = {
-  name: "John",
-  age: 25,
-  location: "Vancouver"
-  // let and const are block scoped, var is functionally scoped
-  // (it gets hoisted into the surrounding function)
-};var count = 0;
-var addOne = function addOne() {
-  count++;
-  renderCounterApp();
-};
-var minusOne = function minusOne() {
-  count--;
-  renderCounterApp();
-};
-var reset = function reset() {
-  count = 0;
-  renderCounterApp();
 };
 
+var removeAll = function removeAll() {
+  app.options = [];
+  renderIndecision();
+};
 // ternary operator condition ? "what happens if true" : "what happens if false"
 
 var appRoot = document.getElementById('app');
 
-var renderCounterApp = function renderCounterApp() {
-  var templateTwo = React.createElement(
-    "div",
+var renderIndecision = function renderIndecision() {
+  var template = React.createElement(
+    'div',
     null,
     React.createElement(
-      "h1",
+      'h1',
       null,
-      "Count: ",
-      count
+      app.title
+    ),
+    true && React.createElement(
+      'p',
+      null,
+      app.subtitle
     ),
     React.createElement(
-      "button",
-      { onClick: addOne },
-      "+1"
+      'p',
+      null,
+      app.options.length > 0 ? 'Here are your options : ' + app.options : "No options"
     ),
     React.createElement(
-      "button",
-      { onClick: minusOne },
-      "-1"
+      'form',
+      { onSubmit: onFormSubmit },
+      React.createElement('input', { type: 'text', name: 'option' }),
+      React.createElement(
+        'button',
+        null,
+        'Add Option'
+      )
     ),
     React.createElement(
-      "button",
-      { onClick: reset },
-      "reset"
+      'button',
+      { onClick: removeAll },
+      'Remove All'
     )
   );
 
-  ReactDOM.render(templateTwo, appRoot);
+  ReactDOM.render(template, appRoot);
 };
-
-renderCounterApp();
+renderIndecision();
