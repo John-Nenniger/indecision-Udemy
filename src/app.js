@@ -1,10 +1,11 @@
 
 console.log("app.js is running")
+const appRoot = document.getElementById('app')
 
 const app = {
   title: 'Indecision App',
   subtitle: 'Let me, a robot decide for you.',
-  options: [' One', ' Two', ' Three', ' fer']
+  options: []
 }
 
 const onFormSubmit = (e) => {
@@ -24,7 +25,8 @@ const removeAll = () => {
 }
 // ternary operator condition ? "what happens if true" : "what happens if false"
 
-const appRoot = document.getElementById('app')
+const numbers = [99,98,97,95]
+
 
 const renderIndecision = () => {
   const template = (
@@ -37,6 +39,14 @@ const renderIndecision = () => {
       <button>Add Option</button>
     </form>
     <button onClick={removeAll}>Remove All</button>
+    {/* {numbers.map((number) => {
+      return <p key={number}>Number: {number}</p>
+    })} */}
+    <ol>
+      {app.options.map((option) => {
+        return <li key={option}> Option: {option}</li>
+      })}
+    </ol>
   </div>
   );
 

@@ -1,11 +1,12 @@
 'use strict';
 
 console.log("app.js is running");
+var appRoot = document.getElementById('app');
 
 var app = {
   title: 'Indecision App',
   subtitle: 'Let me, a robot decide for you.',
-  options: [' One', ' Two', ' Three', ' fer']
+  options: []
 };
 
 var onFormSubmit = function onFormSubmit(e) {
@@ -25,7 +26,7 @@ var removeAll = function removeAll() {
 };
 // ternary operator condition ? "what happens if true" : "what happens if false"
 
-var appRoot = document.getElementById('app');
+var numbers = [99, 98, 97, 95];
 
 var renderIndecision = function renderIndecision() {
   var template = React.createElement(
@@ -60,6 +61,18 @@ var renderIndecision = function renderIndecision() {
       'button',
       { onClick: removeAll },
       'Remove All'
+    ),
+    React.createElement(
+      'ol',
+      null,
+      app.options.map(function (option) {
+        return React.createElement(
+          'li',
+          { key: option },
+          ' Option: ',
+          option
+        );
+      })
     )
   );
 
