@@ -23,6 +23,14 @@ const removeAll = () => {
   app.options = [];
   renderIndecision()
 }
+
+const makeDecision = () => {
+  const random = Math.floor(Math.random() * app.options.length);
+  const option = app.options[random];
+  alert(option);
+  console.log(random);
+
+}
 // ternary operator condition ? "what happens if true" : "what happens if false"
 
 const numbers = [99,98,97,95]
@@ -38,6 +46,7 @@ const renderIndecision = () => {
       <input type="text" name="option" />
       <button>Add Option</button>
     </form>
+    <button onClick={makeDecision}>What should I do?</button>
     <button onClick={removeAll}>Remove All</button>
     {/* {numbers.map((number) => {
       return <p key={number}>Number: {number}</p>
