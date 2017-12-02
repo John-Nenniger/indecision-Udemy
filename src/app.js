@@ -1,64 +1,56 @@
-
-console.log("app.js is running")
-const appRoot = document.getElementById('app')
-
 const app = {
-  title: 'Indecision App',
-  subtitle: 'Let me, a robot decide for you.',
-  options: []
+  title: "Indecision",
+  options: [0,1,2,3,4]
+
 }
 
-const onFormSubmit = (e) => {
-  e.preventDefault();
-  const option = e.target.elements.option.value
-
-  if (option){
-    app.options.push(` ${option}`);
-    e.target.elements.option.value = '';
-    renderIndecision()
+class Header extends React.Component{
+  render(){
+    return <div>
+      <h1>Indecision</h1>
+      <h2>Ask a computer what to do</h2>
+    </div>
   }
 }
 
-const removeAll = () => {
-  app.options = [];
-  renderIndecision()
+class Action extends React.Component {
+  render(){
+    return (
+      <div>
+        <button>What should I do?</button>
+      </div>
+    )
+  }
 }
 
-const makeDecision = () => {
-  const random = Math.floor(Math.random() * app.options.length);
-  const option = app.options[random];
-  alert(option);
-  console.log(random);
-
+class Options extends React.Component{
+  render(){
+    return(
+      <div>
+        <p>{app.options[0]}</p>
+        <p>{app.options[1]}</p>
+        <p>{app.options[2]}</p>
+      </div>)
+  }
 }
-// ternary operator condition ? "what happens if true" : "what happens if false"
 
-const numbers = [99,98,97,95]
-
-
-const renderIndecision = () => {
-  const template = (
-  <div>
-    <h1>{app.title}</h1>
-    {true && <p>{app.subtitle}</p>}
-    <p>{app.options.length>0 ? `Here are your options : ${app.options}` : "No options"}</p>
-    <form onSubmit={onFormSubmit}>
+class AddOption extends React.Component{
+  render(){
+    return (<form>
       <input type="text" name="option" />
       <button>Add Option</button>
-    </form>
-    <button onClick={makeDecision}>What should I do?</button>
-    <button onClick={removeAll}>Remove All</button>
-    {/* {numbers.map((number) => {
-      return <p key={number}>Number: {number}</p>
-    })} */}
-    <ol>
-      {app.options.map((option) => {
-        return <li key={option}> Option: {option}</li>
-      })}
-    </ol>
-  </div>
-  );
-
-  ReactDOM.render(template, appRoot);
+    </form>)
+  }
 }
-renderIndecision()
+
+
+const jsx = (
+  <div>
+    <Header />
+    <Action />
+    <Options />
+    <AddOption />
+  </div>
+)
+
+ReactDOM.render(jsx, document.getElementById('app'))
