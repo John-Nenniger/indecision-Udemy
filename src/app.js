@@ -37,15 +37,19 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component{
+  constructor(props){
+    super(props);
+    this.removeAll = this.removeAll.bind(this)
+  }
   removeAll(){
     // this.props.options = [];
     // IndecisionApp.render()
-    alert('remove all triggered')
+    console.log(this.props.options)
   }
   render(){
     return(
       <div>
-        <button onClick={this.removeAll}>Remove all options</button>
+        <button onClick={this.removeAll.bind(this)}>Remove all options</button>
         {this.props.options.map((option) => <Option key={option} optionText={option}/>)}
       </div>)
   }
