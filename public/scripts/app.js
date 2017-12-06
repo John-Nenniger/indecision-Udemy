@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -8,132 +8,65 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Counter = function (_React$Component) {
-  _inherits(Counter, _React$Component);
+var me = {
+  name: "John",
+  details: "yeah yeah hey whaaat"
+};
 
-  function Counter(props) {
-    _classCallCheck(this, Counter);
+var VisibilityToggle = function (_React$Component) {
+  _inherits(VisibilityToggle, _React$Component);
 
-    var _this = _possibleConstructorReturn(this, (Counter.__proto__ || Object.getPrototypeOf(Counter)).call(this, props));
+  function VisibilityToggle(props) {
+    _classCallCheck(this, VisibilityToggle);
 
-    _this.addOne = _this.addOne.bind(_this);
-    _this.minusOne = _this.minusOne.bind(_this);
-    _this.reset = _this.reset.bind(_this);
+    var _this = _possibleConstructorReturn(this, (VisibilityToggle.__proto__ || Object.getPrototypeOf(VisibilityToggle)).call(this, props));
+
+    _this.handleVisibilityToggle = _this.handleVisibilityToggle.bind(_this);
     _this.state = {
-      count: 0
+      visibility: true
     };
     return _this;
   }
 
-  _createClass(Counter, [{
-    key: 'addOne',
-    value: function addOne() {
+  _createClass(VisibilityToggle, [{
+    key: "handleVisibilityToggle",
+    value: function handleVisibilityToggle() {
       this.setState(function (prevState) {
         return {
-          count: prevState.count + 1
+          visibility: !prevState.visibility
         };
       });
     }
   }, {
-    key: 'minusOne',
-    value: function minusOne() {
-      this.setState(function (prevState) {
-        return {
-          count: prevState.count - 1
-        };
-      });
-    }
-  }, {
-    key: 'reset',
-    value: function reset() {
-      this.setState(function () {
-        return {
-          count: 0
-        };
-      });
-    }
-  }, {
-    key: 'render',
+    key: "render",
     value: function render() {
       return React.createElement(
-        'div',
+        "div",
         null,
         React.createElement(
-          'h1',
+          "h1",
           null,
-          'Count: ',
-          this.state.count
+          me.name
         ),
         React.createElement(
-          'button',
-          { onClick: this.addOne },
-          '+1'
+          "button",
+          { onClick: this.handleVisibilityToggle },
+          this.state.visibility ? 'Hide Details' : 'Show Details'
         ),
-        React.createElement(
-          'button',
-          { onClick: this.minusOne },
-          '-1'
-        ),
-        React.createElement(
-          'button',
-          { onClick: this.reset },
-          'Reset'
+        this.state.visibility && React.createElement(
+          "div",
+          null,
+          React.createElement(
+            "p",
+            null,
+            me.details
+          )
         )
       );
     }
   }]);
 
-  return Counter;
+  return VisibilityToggle;
 }(React.Component);
 
-ReactDOM.render(React.createElement(Counter, null), document.getElementById('app'));
-
-// console.log("app.js is running")
-//
-// function getLocation(location){
-//   if(location){
-//     return <p> Location: {location} </p>
-//   } else {
-//     return undefined
-//   }
-// }
-//
-// const user = {
-//   name: "John",
-//   age: 25,
-//   location: "Vancouver"
-// }
-// // let and const are block scoped, var is functionally scoped
-// // (it gets hoisted into the surrounding function)
-// let count = 0;
-// const addOne = () => {
-//   count++;
-//   renderCounterApp();
-// }
-// const minusOne = () => {
-//   count--;
-//   renderCounterApp();
-// }
-// const reset = () => {
-//   count = 0;
-//   renderCounterApp();
-// }
-//
-// // ternary operator condition ? "what happens if true" : "what happens if false"
-//
-// const appRoot = document.getElementById('app')
-//
-// const renderCounterApp = () => {
-//   const templateTwo = (
-//     <div>
-//       <h1>Count: {count}</h1>
-//       <button onClick={addOne}>+1</button>
-//       <button onClick={minusOne}>-1</button>
-//       <button onClick={reset}>reset</button>
-//     </div>
-//   );
-//
-// ReactDOM.render(templateTwo, appRoot)
-// }
-//
-// renderCounterApp();
+ReactDOM.render(React.createElement(VisibilityToggle, null), document.getElementById('app'));
