@@ -2,10 +2,23 @@
 class IndecisionApp extends React.Component{
   constructor(props){
     super(props);
+    this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
+    this.handlePick = this.handlePick.bind(this);
     this.state = {
-      options:['thing one', 'thing two', "thing five"]
+      options:['thing one', 'thing two', "thing five", "thing twelve"]
     }
 
+  }
+  handlePick(){
+
+    alert(this.state.options[Math.floor(Math.random()*this.state.options.length)])
+  }
+  handleDeleteOptions(){
+    this.setState(() => {
+      return {
+        options: []
+      }
+    })
   }
   render(){
     const title = "Indecision";
@@ -13,8 +26,14 @@ class IndecisionApp extends React.Component{
 
     return <div>
       <Header title={title} subTitle={subTitle}/>
-      <Action hasOptions={this.state.options.length > 0}/>
-      <Options options={this.state.options}/>
+      <Action
+        hasOptions={this.state.options.length > 0}
+        handlePick={this.handlePick}
+      />
+      <Options
+        options={this.state.options}
+        handleDeleteOptions = {this.handleDeleteOptions}
+      />
       <AddOption />
     </div>
   }
@@ -30,13 +49,10 @@ class Header extends React.Component{
 }
 
 class Action extends React.Component {
-  handlePick(){
-    alert('handlePick')
-  }
   render(){
     return (
       <div>
-        <button onClick={this.handlePick}
+        <button onClick={this.props.handlePick}
           disabled={!this.props.hasOptions}
           >
           What should I do?
@@ -47,19 +63,10 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component{
-  constructor(props){
-    super(props);
-    this.removeAll = this.removeAll.bind(this)
-  }
-  removeAll(){
-    // this.props.options = [];
-    // IndecisionApp.render()
-    console.log(this.props.options)
-  }
   render(){
     return(
       <div>
-        <button onClick={this.removeAll.bind(this)}>Remove all options</button>
+        <button onClick={this.props.handleDeleteOptions}>Remove all options</button>
         {this.props.options.map((option) => <Option key={option} optionText={option}/>)}
       </div>)
   }
