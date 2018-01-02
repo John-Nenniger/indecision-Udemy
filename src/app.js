@@ -6,7 +6,7 @@ class IndecisionApp extends React.Component{
     this.handlePick = this.handlePick.bind(this);
     this.handleAddOption = this.handleAddOption.bind(this);
     this.state = {
-      options:[]
+      options: props.options
     }
 
   }
@@ -54,13 +54,20 @@ class IndecisionApp extends React.Component{
   }
 }
 
+IndecisionApp.defaultProps = {
+  options: []
+}
+
 const Header = (props) => {
   return <div>
     <h1>{props.title}</h1>
-    <h2>{props.subTitle}</h2>
+    {props.subTitle && <h2>{props.subTitle}</h2>}
   </div>
 }
 
+Header.defaultProps = {
+  title: 'Indecision'
+}
 
 const Action = (props) => {
   return (
@@ -122,4 +129,4 @@ class AddOption extends React.Component{
   }
 }
 
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'))
+ReactDOM.render(<IndecisionApp options={[]} />, document.getElementById('app'))
