@@ -6,6 +6,6 @@ import ReactDOM from 'react-dom';
 
 const l = console.log
 l('app.js is running!!!!!!!!!!!');
-const template = React.createElement('p', {}, 'Whaddup')
+const template = <p>This is jsx please </p>
 
 ReactDOM.render(template, document.getElementById('app'))
