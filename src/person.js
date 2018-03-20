@@ -16,3 +16,5 @@ const canDrink = (age) => {
 }
 
 export { isAdult, canDrink }
+
+export default (age) =>  age > 65 
