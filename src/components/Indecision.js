@@ -5,16 +5,42 @@ import Header from './Header';
 import Options from './Options';
 
 class Indecision extends React.Component{
-  constructor(props){
-    super(props);
-    this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
-    this.handlePick = this.handlePick.bind(this);
-    this.handleAddOption = this.handleAddOption.bind(this);
-    this.handleDeleteOption = this.handleDeleteOption.bind(this);
-    this.state = {
-      options: []
-    };
+  state = {
+    options: []
+  };
+
+  componentDidUpdate = (prevProps, prevState) => {
+    if (prevState.options.length !== this.state.options.length){
+      const jsonOptions = JSON.stringify(this.state.options)
+      localStorage.setItem('options', jsonOptions);
+    }
   }
+
+  handlePick = () => {
+    alert(this.state.options[Math.floor(Math.random()*this.state.options.length)])
+  }
+  handleAddOption = (option) => {
+    if(!option){
+      return "Enter a valid value to add an item"
+    } else if (this.state.options.indexOf(option) > -1) {
+      return "This option already exists"
+    }
+    this.setState((prevState) => ({options: prevState.options.concat(option)}))
+  }
+  handleDeleteOption = (optionToRemove) => {
+    this.setState((prevState) => (
+      {options: prevState.options.filter((option) => option !== optionToRemove)}
+    ))
+  }
+
+  handleDeleteOptions = () => {
+    this.setState(() => ( {options:[]} ))
+  }
+  
+  componentWillUnmount(){
+    console.log("componentwillunmount")
+  }
+
   componentDidMount(){
     try {
       const jsonOptions = localStorage.getItem("options")
@@ -24,37 +50,8 @@ class Indecision extends React.Component{
         this.setState(() => ({options}))
       }
     } catch(err) {
-        console.log(err)
-      }
-  }
-  componentDidUpdate(prevProps, prevState){
-    if (prevState.options.length !== this.state.options.length){
-      const jsonOptions = JSON.stringify(this.state.options)
-      localStorage.setItem('options', jsonOptions);
+      console.log(err)
     }
-  }
-  componentWillUnmount(){
-    console.log("componentwillunmount")
-  }
-  handlePick(){
-    alert(this.state.options[Math.floor(Math.random()*this.state.options.length)])
-  }
-  handleAddOption(option){
-    if(!option){
-      return "Enter a valid value to add an item"
-    } else if (this.state.options.indexOf(option) > -1) {
-      return "This option already exists"
-    }
-    this.setState((prevState) => ({options: prevState.options.concat(option)}))
-  }
-  handleDeleteOption(optionToRemove){
-    this.setState((prevState) => (
-      {options: prevState.options.filter((option) => option !== optionToRemove)}
-    ))
-  }
-
-  handleDeleteOptions(){
-    this.setState(() => ( {options:[]} ))
   }
 
   render(){
