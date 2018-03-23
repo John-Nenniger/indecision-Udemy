@@ -5,3 +5,12 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   background-color: $darkish
 }
+
+button{
+  cursor: pointer;
+
+}
+
+button:disabled{
+  cursor: default;
+}
