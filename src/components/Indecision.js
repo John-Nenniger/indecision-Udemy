@@ -51,7 +51,6 @@ class Indecision extends React.Component{
   }
 
   componentDidMount(){
-    console.log(this.state.selectedOption)
     try {
       const jsonOptions = localStorage.getItem("options")
       const options = JSON.parse(jsonOptions);
