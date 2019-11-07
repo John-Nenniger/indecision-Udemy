@@ -31,9 +31,11 @@ class IndecisionApp extends React.Component{
   componentWillUnmount(){
     console.log("componentwillunmount")
   }
+
   handlePick(){
     alert(this.state.options[Math.floor(Math.random()*this.state.options.length)])
   }
+
   handleAddOption(option){
     if(!option){
       return "Enter a valid value to add an item"
