@@ -4,7 +4,7 @@
   "description": "Making decisions for you",
   "main": "index.js",
   "repository": "",
-  "author": "John Nenniger",
+  "author": "Jack Nenniger",
   "license": "MIT",
   "scripts": {
     "serve": "live-server public/",

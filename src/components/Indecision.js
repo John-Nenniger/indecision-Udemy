@@ -28,6 +28,7 @@ class Indecision extends React.Component{
       selectedOption: option
     }))
   }
+
   handleAddOption = (option) => {
     if(!option){
       return "Enter a valid value to add an item"
@@ -36,6 +37,7 @@ class Indecision extends React.Component{
     }
     this.setState((prevState) => ({options: prevState.options.concat(option)}))
   }
+  
   handleDeleteOption = (optionToRemove) => {
     this.setState((prevState) => (
       {options: prevState.options.filter((option) => option !== optionToRemove)}
